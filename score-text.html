@@ -30,9 +30,9 @@
         e.preventDefault();
         const text = document.getElementById("user-input").value;
         const payload = {
-          "text": text,
-          "inventories": ["big5"],
-          "lang": "en",
+          text: text,
+          inventories: ["big5", "neo"],
+          lang: "en",
         };
         //console.log(payload);
         const reqOptions = {
@@ -40,11 +40,12 @@
           mode: "cors",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "bdc16073b9a6ba7b7516f3f313925756437e6a70",
+            Authorization: "Token bdc16073b9a6ba7b7516f3f313925756437e6a70",
           },
           body: JSON.stringify(payload),
         };
-        const proxyUrl = "http://localhost:8080/"
+        // set up a local cors proxy using cors-anywhere package or use a public cors proxy
+        const proxyUrl = "http://localhost:5000/";
         const url = proxyUrl + "https://api.sentino.org/score";
         try {
           const response = await fetch(url, reqOptions);
