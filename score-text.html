@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Test Personality</title>
+    <style>
+      .form-area {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Personality Test</h1>
+    <div class="form-area">
+      <form id="score-form">
+        <textarea
+          id="user-input"
+          name="user-input"
+          cols="40"
+          rows="20"
+        ></textarea>
+        <input type="submit" />
+      </form>
+    </div>
+    <script>
+      const get_result = async e => {
+        e.preventDefault();
+        const text = document.getElementById("user-input").value;
+        const payload = {
+          text: text,
+          inventories: ["big5", "neo"],
+          lang: "en",
+        };
+        //console.log(payload);
+        const reqOptions = {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token bdc16073b9a6ba7b7516f3f313925756437e6a70",
+          },
+          body: JSON.stringify(payload),
+        };
+        // set up a local cors proxy using cors-anywhere package or use a public cors proxy
+        const proxyUrl = "http://localhost:5000/";
+        const url = proxyUrl + "https://api.sentino.org/score";
+        try {
+          const response = await fetch(url, reqOptions);
+          if (!response.ok) {
+            console.log(response);
+            return;
+          }
+          const data = await response.json();
+          console.log(data);
+          // once data arrives, render the data on the page.
+        } catch (e) {
+          console.log("Failed to fetch");
+        }
+      };
+      document
+        .getElementById("score-form")
+        .addEventListener("submit", get_result);
+    </script>
+  </body>
+</html>

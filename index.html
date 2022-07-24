@@ -55,8 +55,10 @@
                                 <a class="nav-link" href="Guidance.php">Guidance</a></li>
                                <li class="nav-item">
                                 <a class="nav-link" href="test.html">Tests</a></li>
-                              
-                                
+                               <li class="nav-item">
+                                   <a href="score-text.html"
+                                       class="nav-link">Personality Test</a>
+                               </li>
                                <li class="nav-item" href="#">
       	                        <a class="nav-link" href="contact.html">Contact Us</a></li>
                             </ul>
@@ -459,20 +461,6 @@ div.guide p.title {color:#df501f; font:18px Arial, Helvetica, sans-serif;}
          <script>
       // This example adds a marker to indicate the position of Bondi Beach in Sydney,
       // Australia.
-      async function get_result(text) {
-          const options = {
-              method: 'POST',
-              headers: {'Authorization': '', 'Content-Type': 'application/json'},
-              body: JSON.stringify({text: text})
-          };
-          const response = await fetch("https://api.sentino.org/score", options);
-          if(!response.ok) {
-            console.log("api failed or something ")
-            return;
-          }
-          const data = await resoponse.json();
-          if      
-        }
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 11,
